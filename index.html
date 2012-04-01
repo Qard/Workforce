@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Workforce</title>
+    <script type="text/javascript" src="/workforce.js"></script>
+    <script type="text/javascript">
+    var worker = new Workforce('worker.js');
+
+    worker.on('pong', function (e) {
+      console.log('ping, pong');
+    });
+
+    worker.on('foo:baz', function (e, obj) {
+      console.log('foo:baz received', obj);
+    });
+
+    worker.on('wild:*', function (e) {
+      console.log('wild:* triggered from', e.name);
+    });
+
+    worker.on(/o/, function (e) {
+      console.log('/o/ triggered from', e.name);
+    })
+
+    worker.emit('ping');
+    worker.emit('foo:bar', { foo: 'bar' });
+    </script>
+  </head>
+  <body></body>
+</html>

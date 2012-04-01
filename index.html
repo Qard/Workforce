@@ -4,26 +4,30 @@
     <title>Workforce</title>
     <script type="text/javascript" src="/workforce.js"></script>
     <script type="text/javascript">
+    // Start worker
     var worker = new Workforce('worker.js');
 
+    // Receive pong response to the emitted ping
+    worker.emit('ping');
     worker.on('pong', function (e) {
       console.log('ping, pong');
     });
 
+    // Pass object in and received modified version
+    worker.emit('foo:bar', { foo: 'bar' });
     worker.on('foo:baz', function (e, obj) {
       console.log('foo:baz received', obj);
     });
 
+    // Catch the wild events using wildcards
     worker.on('wild:*', function (e) {
       console.log('wild:* triggered from', e.name);
     });
 
+    // Catch all events with 'o' in them using regex
     worker.on(/o/, function (e) {
       console.log('/o/ triggered from', e.name);
-    })
-
-    worker.emit('ping');
-    worker.emit('foo:bar', { foo: 'bar' });
+    });
     </script>
   </head>
   <body></body>

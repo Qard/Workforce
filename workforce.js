@@ -1,3 +1,12 @@
+/**
+ * Workforce - Wildcard/regex supported event interface for web workers
+ * 
+ * Copyright (c) 2012 Stephen Belanger
+ * Licensed under MIT License
+ * 
+ * Worker and normal context parts can easily be extracted
+ * for minification, but both depend on WorkforceEvent.
+ */
 function WorkforceEvent (name) {
   this.name = name;
 }
